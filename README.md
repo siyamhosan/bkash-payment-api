@@ -1,14 +1,13 @@
-# bkash-payment-gateway
+# bkash-payment-api
 
-Nodejs library to accept bkash payments on your backend application
+Nodejs library to accept bkash payments on your backend application. BKASH API WRAPPER
 
-![CodeQL](https://github.com/shahriar-shojib/bkash-payment-gateway/workflows/CodeQL/badge.svg)
-![Test for linting and formatting](https://github.com/shahriar-shojib/bkash-payment-gateway/workflows/Test%20for%20linting%20and%20formatting/badge.svg)
-![Publish to NPM and Github Packages](https://github.com/shahriar-shojib/bkash-payment-gateway/workflows/Publish%20to%20NPM%20and%20Github%20Packages/badge.svg)
+[![CI](https://github.com/siyamhosan/bkash-payment-api/actions/workflows/main.yml/badge.svg)](https://github.com/siyamhosan/bkash-payment-api/actions/workflows/main.yml)
+[![Publish](https://github.com/siyamhosan/bkash-payment-api/actions/workflows/publish.yml/badge.svg)](https://github.com/siyamhosan/bkash-payment-api/actions/workflows/publish.yml)
 
 ## Examples
 
-- [Express](https://github.com/shahriar-shojib/bkash-payment-gateway/tree/main/examples)
+- [Express](https://github.com/shahriar-shojib/bkash-payment-gateway/tree/main/examples) from main Author [Shahriar Shojib](https://github.com/shahriar-shojib) *may not work*
 
 ## Features
 
@@ -28,13 +27,28 @@ Nodejs library to accept bkash payments on your backend application
 
 ### `npm`
 
-> `npm install bkash-payment-gateway`
+> `npm install bkash-payment-api`
 
 ### `yarn`
 
-> `yarn add bkash-payment-gateway`
+> `yarn add bkash-payment-api`
 
 ---
+
+## Getting Bkash Credentials
+****You need Bkash Merchant or Retails account to use this library**
+1. Goto [Bkash PGW](https://pgw-integration.bkash.com) and login or create a new account
+2. [Request for New Product](https://pgw-integration.bkash.com/#/merchant/new-product-request)
+3. Fill up the form and submit
+ > **Select Application Platform**: select all ✔
+4. Get [Sandbox Credentials](https://pgw-integration.bkash.com/#/merchant/sandbox-credentials) these are your bkash credentials/config
+> baseUrl is `https://checkout.sandbox.bka.sh/v1.2.0-beta` for sandbox
+> baseUrl is `https://tokenized.pay.bka.sh/v1.2.0-beta` for production
+5. [Validate Sandbox](https://pgw-integration.bkash.com/#/merchant/sandbox-validation) Credentials for Live Production Credentials 
+> 1. [Create a payment](#create-a-payment)
+> 2. get the response and enter that in `Create Payment Sandbox Test` also get the `paymentID` from response
+> 3. [Execute a payment](#execute-a-payment-with-payment-id) with the `paymentID` and enter the response in `Execute Payment Sandbox Test`
+> 4. Submit and You got your [Live Credentials](https://pgw-integration.bkash.com/#/merchant/live-credentials)
 
 ## Initializing the library
 
@@ -43,7 +57,7 @@ Nodejs library to accept bkash payments on your backend application
 > file `bkash.js`
 
 ```javascript
-const { BkashGateway } = require('bkash-payment-gateway');
+const { BkashGateway } = require('bkash-payment-api');
 
 const bkashConfig = {
 	baseURL: 'https://checkout.sandbox.bka.sh/v1.2.0-beta', //do not add a trailing slash
@@ -62,9 +76,9 @@ module.exports = bkash;
 > file `bkash.ts`
 
 ```typescript
-import { BkashGateway ICreatePayment } from 'bkash-payment-gatway';
+import { BkashGateway IBkashConstructor } from 'bkash-payment-api';
 
-const bkashConfig: ICreatePayment = {
+const bkashConfig: IBkashConstructor = {
 	//get intellisense here
 	baseURL: 'https://checkout.sandbox.bka.sh/v1.2.0-beta', //do not add a trailing slash
 	key: 'abcdxx2369',
@@ -86,6 +100,7 @@ const paymentRequest = {
 	amount: 1000,
 	orderID: 'ORD1020069',
 	intent: 'sale',
+	callBack: 'https://example.com/bkash/callback',
 };
 
 const result = await bkash.createPayment(paymentRequest);
@@ -97,7 +112,8 @@ console.log(result);
 ## Execute a payment with payment ID
 
 ```javascript
-const result = await bkash.executePayment('<Payment ID returned by bkash>');
+const paymentId = createPaymentRequest.paymentID; // sample payment ID
+const result = await bkash.executePayment(paymentId);
 ```
 
 ---
@@ -105,7 +121,8 @@ const result = await bkash.executePayment('<Payment ID returned by bkash>');
 ## Query a payment with payment ID
 
 ```javascript
-const result = await bkash.queryPayment('<Payment ID returned by bkash>');
+const paymentId = createPaymentRequest.paymentID; // sample payment ID
+const result = await bkash.queryPayment(paymentId);
 ```
 
 ---
@@ -119,6 +136,7 @@ const result = await bkash.searchTransaction('TRX22347463XX');
 ---
 
 ## Refund a transaction
+Not Working Right Now
 
 ```javascript
 const refundTransactionData = {
@@ -134,6 +152,7 @@ const result = await bkash.refundTransaction(refundTransactionData);
 ---
 
 ## Check Refund Status
+Not Working Right Now
 
 ```javascript
 const result = await bkash.refundStatus('TRX22347463XX', '12437969');
@@ -157,5 +176,7 @@ const result = await bkash.refundStatus('TRX22347463XX', '12437969');
 > DISCLAIMER: This software comes with absolutely no warranty and is not affiliated with the company **`Bkash`** in any way. Use at your own risk. Author and Contributors are not responsible for any financial damages, outages etc.
 
 ### Author
-
+Continue By
+[Siyam Hosan](https://github.com/siyamhosan)
+Created by
 [Shahriar Shojib](https://github.com/shahriar-shojib)
