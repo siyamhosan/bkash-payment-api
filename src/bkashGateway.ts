@@ -202,7 +202,7 @@ export class BkashGateway {
     refundInfo: IRefundArgs
   ): Promise<IBkashRefundResponse> => {
     return post<IBkashRefundResponse>(
-      `${this.baseURL}/checkout/payment/refund`,
+      `${this.baseURL}/tokenized/checkout/payment/refund`,
       refundInfo,
       await this.createTokenHeader()
     )
@@ -224,7 +224,7 @@ export class BkashGateway {
     paymentID: string
   ): Promise<IBkashRefundStatusResponse> => {
     return await post<IBkashRefundStatusResponse>(
-      `${this.baseURL}/checkout/payment/refund`,
+      `${this.baseURL}/tokenized/checkout/payment/refund`,
       { trxID, paymentID },
       await this.createTokenHeader()
     )
@@ -285,7 +285,7 @@ export class BkashGateway {
 
   private getInitialToken = async (): Promise<IBkashTokenResponse> => {
     const response = await post<IBkashTokenResponse>(
-      `${this.baseURL}/checkout/token/grant`,
+      `${this.baseURL}/tokenized/checkout/token/grant`,
       {
         app_key: this.key,
         app_secret: this.secret
@@ -299,7 +299,7 @@ export class BkashGateway {
 
   private newToken = (refresh: string): Promise<IBkashTokenResponse> => {
     return post<IBkashTokenResponse>(
-      `${this.baseURL}/checkout/token/refresh`,
+      `${this.baseURL}/tokenized/checkout/token/refresh`,
       {
         app_key: this.key,
         app_secret: this.secret,
