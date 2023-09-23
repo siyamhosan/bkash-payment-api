@@ -1,5 +1,15 @@
 # bkash-payment-api
 
+## 1.0.0
+
+### Major Changes
+
+- 7688abf: Sable version
+
+### Patch Changes
+
+- 9ca4d7c: Bug Fixed and Stable
+
 ## 0.9.2
 
 ### Patch Changes
