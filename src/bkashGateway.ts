@@ -95,7 +95,7 @@ export class BkashGateway {
 
     const payload = {
       orderId: orderID,
-      amount,
+      amount: amount.toString(),
       intent,
       mode: '0011',
       currency: 'BDT',

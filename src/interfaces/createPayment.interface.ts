@@ -1,8 +1,9 @@
-export type Intent = 'sale' | 'authorization';
+import { Intent } from './bkashResponse.interface'
+
 export interface ICreatePayment {
-	amount: number;
-	orderID: string;
-	intent: Intent;
-	merchantAssociationInfo?: string;
-	callBack: string;
+  amount: number
+  orderID: string
+  intent: Intent
+  merchantAssociationInfo?: string
+  callBack: string
 }

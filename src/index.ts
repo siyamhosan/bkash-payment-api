@@ -7,7 +7,8 @@ import {
   IBkashRefundResponse,
   IBkashRefundStatusResponse,
   IBkashSearchTransactionResponse,
-  IBkashTokenResponse
+  IBkashTokenResponse,
+  Intent
 } from './interfaces/bkashResponse.interface'
 import { ICreatePayment } from './interfaces/createPayment.interface'
 import { IHeaders } from './interfaces/headers.interface'
@@ -26,6 +27,7 @@ export {
   ICreatePayment,
   IHeaders,
   IBkashConstructor,
-  IRefundArgs
+  IRefundArgs,
+  Intent
 }
 export default BkashGateway
