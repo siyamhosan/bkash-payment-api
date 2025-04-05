@@ -1,5 +1,12 @@
 # bkash-payment-api
 
+## 1.0.2
+
+### Patch Changes
+
+- 65263f0: compiler test
+- c07098d: Bkash Payment Create Response Updated
+
 ## 1.0.1
 
 ### Patch Changes
