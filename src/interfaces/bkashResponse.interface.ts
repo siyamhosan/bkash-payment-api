@@ -11,15 +11,19 @@ export interface IBkashTokenResponse {
 
 export interface IBkashCreatePaymentResponse {
   paymentID: string;
-  createTime: string;
-  orgLogo: string;
-  orgName: string;
-  transactionStatus: string;
+  bkashURL: string;
+  callbackURL: string;
+  successCallbackURL: string;
+  failureCallbackURL: string;
+  cancelledCallbackURL: string;
   amount: string;
-  currency: string;
   intent: string;
+  currency: string;
+  paymentCreateTime: string;
+  transactionStatus: string;
   merchantInvoiceNumber: string;
-  //need to implement error cases here
+  statusCode: string;
+  statusMessage: string;
 }
 
 export interface IBkashExecutePaymentResponse {
